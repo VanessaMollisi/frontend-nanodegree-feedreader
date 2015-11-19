@@ -13,15 +13,16 @@ var allFeeds = [
         url: 'http://blog.udacity.com/feeds/posts/default?alt=rss'
     }, {
         name: 'CSS Tricks',
-        url: 'http://css-tricks.com/feed'
+		url: 'http://css-tricks.com/feed'
     }, {
         name: 'HTML5 Rocks',
         url: 'http://feeds.feedburner.com/html5rocks'
     }, {
         name: 'Linear Digressions',
-        url: 'http://feeds.feedburner.com/udacity-linear-digressions'
+		url: 'http://feeds.feedburner.com/udacity-linear-digressions'
     }
 ];
+//allFeeds = [];//Doing this causes the provided test to fail
 
 /* This function starts up our application. The Google Feed
  * Reader API is loaded asynchonously and will then call this
@@ -40,6 +41,18 @@ function init() {
  * This function all supports a callback as the second parameter
  * which will be called after everything has run successfully.
  */
+
+/*This block of code causes the internal entry-link test to fail 
+var xyz = 0;
+function loadFeed(id,cb) {
+	$('.header-title')[0].innerText = xyz;
+	xyz++;
+	var x = '<a class="entry-link" href="google.com"><article class="entry">Duplicated Thing</article></a>';
+	$('.feed').append(x);
+	$('.feed').append(x);
+	if(cb){cb()};
+};*/
+
 function loadFeed(id, cb) {
     var feedUrl = allFeeds[id].url,
         feedName = allFeeds[id].name,
