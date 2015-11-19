@@ -1,6 +1,7 @@
 # Project Implementation
 
 Just a couple of points here, since I didn't bother making a build script.
+
 1. I left some commented out code in app.js that I used  to watch tests fail.
 2. I "borrowed" the looping technique from [mcs](https://discussions.udacity.com/t/tricks-for-setting-callbacks-and-handlers-during-loop-iteration-closure/38435) and used it somewhat interchangeably with ordinary for(i<l) style loops, just to develop muscle memory. I don't want to forget how he did that, it seems really useful.
 3. In "New Feed Selection" I preload the feed data in a beforeAll, then work with the stack. I think this is OK, since the core of this test is to make sure the data changes, rather than to make sure it eventually arrives. 
