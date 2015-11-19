@@ -113,13 +113,13 @@ $(function() {
 			loadFeed(0,function(){
 				done();
 			});
-			//done();
+
 		});
 		
 		it('has at least a single .entry within the .feed container',function() {
 			var entry = $('.feed .entry')[0];
 			expect(entry).toBeGreaterThan('');
-			//done();
+
 		});
 		
 	});
@@ -135,14 +135,14 @@ $(function() {
 		//then comparing the content across the feeds.
 		
 		var stack = [];
-		//for(var i=0,l=allFeeds.length;i<l;i++) {
+
 			
 		allFeeds.forEach(function(feed, i) {
 			beforeAll(function(done){
-				//console.log('overhead');
+			
 				loadFeed(i,function() {
 					var t = $('.header-title')[0].innerText;
-					//console.log(t);
+					
 					var aEntries = [];
 					var $entries = $('.feed .entry-link');
 					for(var j=0,k=$entries.length;j<k;j++){
@@ -153,7 +153,7 @@ $(function() {
 					}
 					var datum = new feedDatum({headerTitle: t,entries: aEntries});
 					stack.push(datum);
-					//stack.push(t);
+					
 					done();
 				});
 			});
@@ -161,27 +161,21 @@ $(function() {
 		});
 		
 		it('has the right number of feeds',function() {
-			//console.log('has right number of feeds: '+stack.length);
+
 			expect(stack.length).toEqual(allFeeds.length);
-			//done();
+
 		});
 		
-		//https://github.com/jasmine/jasmine/issues/830 - suggests I cant do what i want, unfortunately
+		//https://github.com/jasmine/jasmine/issues/830 - suggests I cant dynamically make tests based on asynchronous response, unfortunately
 		it('has feeds with content',function() {
-			//expect(true).toEqual(true);
+
 			stack.forEach(function(f,i) {
-				//console.log('Huh?');
-				//describe('The stack of feeds', function(){
-					//it('entry '+i+' has content', function() {
-						//console.log(i+ 'has content?');
+
 						expect(stack[i]).not.toBeUndefined();
-						//done();
-					//});
-				//});
-				//done();
+
 			});
 			
-			//done();
+
 		});
 			
 		it('has header titles that exist and change on loadfeed',function(){
@@ -220,7 +214,7 @@ $(function() {
 			var initTitles = stack[0].getEntryTitles();
 			
 			for(var i=1,l=stack.length;i<l;i++) {
-				//var s = new Set();
+
 				expect(stack[i].getEntryTitles().length).toEqual(initTitles.length);
 			}
 			for(var i=0,l=initTitles.length;i<l;i++) {
@@ -229,53 +223,11 @@ $(function() {
 					var titles = stack[j].getEntryTitles();
 					s.add(titles[i]);
 				}
-				//console.dir(s);
+
 				expect(s.size).toEqual(initTitles.length);
 			}
 			
 		});
-		
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
-		//The content includes the header-title, the entry-link, the article>h2 title, and the article>p content
-		//Specific things to look for are empty entries, duplicate entries for a single query, ghost entries from previous queries, ghost links
-		//I think I will do this by first retrieving the content for each feed
-		//then comparing the content across the feeds.
-		/*beforeAll(function(done){
-			var stack = [];
-			//for(var i=0,l=allFeeds.length;i<l;i++){
-			//allFeeds.forEach(function(feed,i){
-				//console.log(i);
-				var i=1;
-				describe('feed '+i,function() {
-					beforeEach(function(done){
-						loadFeed(i,function(){
-							//console.log(i);
-							//stack.push[data];
-							done();
-						});
-					});
-					it('has at least a single .entry within the .feed container',function(done) {
-						console.log('i');
-						var entry = $('.feed .entry')[0];
-						expect(entry).toBeGreaterThan('');
-						//stack.push[data];
-						done();
-					});
-					
-				});
-			//})
-			done();	
-			//expect(stack).toBeDifferent();
-		});		
-		
-		it('has a placeholder', function(done) {
-			expect(true).toBe(true);
-			done();
-		});*/
 
 	});
 }());
@@ -298,6 +250,4 @@ var feedEntry = function(obj) {
 	this.entryContent = obj.entryContent;
 };
 
-feedEntry.prototype.differ = function(entry) {
-	return false;
-};
+
