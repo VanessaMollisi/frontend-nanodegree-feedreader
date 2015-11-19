@@ -1,3 +1,15 @@
+# Project Implementation
+
+Just a couple of points here, since I didn't bother making a build script.
+1. I left some commented out code in app.js that I used  to watch tests fail.
+2. I "borrowed" the looping technique from [mcs](https://discussions.udacity.com/t/tricks-for-setting-callbacks-and-handlers-during-loop-iteration-closure/38435) and used it somewhat interchangeably with ordinary for(i<l) style loops, just to develop muscle memory. I don't want to forget how he did that, it seems really useful.
+3. In "New Feed Selection" I preload the feed data in a beforeAll, then work with the stack. I think this is OK, since the core of this test is to make sure the data changes, rather than to make sure it eventually arrives. 
+4. I left some ridiculously inefficient code in the "has feeds whose corresponding entry links change when the feed changes" test block, because I'm not too worried about performance of these tests - I can be reasonably confident they will finish in a matter of seconds, and if they don't, the problem is probably not the test itself.
+
+It bothers me that I can't dynamically make tests based on [asynchronous data](https://github.com/jasmine/jasmine/issues/830) . The dynamically generated tests that show the index in "RSS Feeds" - the i+" has a URL" and i+" has a name" tests - are really useful for tracking down a specific test failure. It would be nice to have the same ability with asynchronous data. That makes me wonder if I am abusing jasmine on the synchronous side.
+
+That's about it. First submission 11/19/2015 
+
 # Project Overview
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
